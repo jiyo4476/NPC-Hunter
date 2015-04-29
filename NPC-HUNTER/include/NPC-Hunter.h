@@ -9,6 +9,7 @@ class NPC-Hunter
         virtual ~NPC-Hunter(); //destruct
         void addLocation(string name); //add vertex
         void addPath(string name1, string name2, int pathdist) //add edge
+        void addNPC(string name);
         void displayAvailablePaths(); //show paths from player current vertex
         void movePlayer() //moves player along a chosen path from current vertex
         void displayNearbyNPCS(); //displays NPCs sharing vertex with Player after each move

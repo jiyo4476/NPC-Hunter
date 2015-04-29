@@ -1,0 +1,4 @@
+# depslib dependency file v1.0
+1430331999 source:/home/user/NPC-Hunter/NPC-HUNTER/main.cpp
+	<fstream>
+

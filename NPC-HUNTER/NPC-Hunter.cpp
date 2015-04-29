@@ -3,7 +3,7 @@
 #include <vector>
 #include <fstream>
 #include <String>
-
+#include <stdlib>
 using namespace std;
 
 NPC-Hunter::NPC-Hunter()
@@ -39,6 +39,11 @@ void NPC-Hunter::addLocation(string name)
     location l; //if not create new location l
     l.name=name;//with the name that was passed in
     locations.push_back(l); //and put it in the vector of all locations
+}
+
+void NPC-Hunter::addNPC(string name, location *city)
+{
+    city->atLocation.push_back(name);
 }
 
 void NPC-Hunter::addPath(string name1, string name2, int pathdist)
@@ -170,10 +175,20 @@ void NPC-Hunter::movePlayer() //take user input to decide where to go // figure 
     }
 
 }
-
-void NPC-Hunter::moveNPC()
+/*for every City, each NPC moves to a randomly chosen city*/
+void NPC-Hunter::moveNPC()// only works when cities are all connected.
 {
+    for(int i=0;i<locations.size();i++){
+        for(int j=0;j<locations[i].atLocation.size();j++){
+            if(locations[i].atLocation[j]!=user){
+                string name = locations[i].atLocation[j].name;
+                locations[i].atLocation.erase(locations[i].atLocation.begin()+(j-1);
+                int rand= rand() locations.size()%;
+                locations[rand].atLocation.push_back(name);
 
+            }
+        }
+    }
 }
 
 void NPC-Hunter::displayUserMenu()
@@ -183,7 +198,12 @@ void NPC-Hunter::displayUserMenu()
     cout<<"Options are: 1) to move, 2) to display available paths"<<endl<<"3) to quit"<<endl;
     int option;
     cin option;
-    if(option==1) movePlayer();
+    if(option==1)
+        {
+            movePlayer();
+            moveNPC();
+        }
+
     if(option==2) displayAvailablePaths();
     if(option==3) running=false;
 
