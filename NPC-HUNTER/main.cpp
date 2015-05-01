@@ -1,12 +1,12 @@
 #include <iostream>
 #include <fstream>
-#indlude "NPC-Hunter.h"
+#include "include/NPCHunter.h"
 
 using namespace std;
 
 int main()
 {
-    NPC-Hunter N;
+    NPCHunter N;
     N.addLocation( "A");
     N.addLocation( "B");
     N.addLocation( "C");
@@ -18,12 +18,17 @@ int main()
     N.addPath("B","D",3);
     N.addPath("C","D",5);
 
-    string a = "a"
+    //string a = "A";
     for(int i = 0; i<N.locations.size();i++)
     {
-
-        addNPC(a,N.locations[i]);
-        a++;
+        if(i==0)
+        N.addNPC("a",N.locations[i]);
+        if(i==1)
+        N.addNPC("b",N.locations[i]);
+        if(i==2)
+            N.addNPC("c",N.locations[i]);
+        if(i==3)
+            N.addNPC("d",N.locations[i]);
 
     }
     N.running=true;

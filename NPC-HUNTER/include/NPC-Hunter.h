@@ -1,6 +1,7 @@
 #ifndef NPC-HUNTER_H
 #define NPC-HUNTER_H
-
+#include <string>
+#include <vector>
 
 class NPC-Hunter
 {
@@ -8,7 +9,7 @@ class NPC-Hunter
         NPC-Hunter(); //init
         virtual ~NPC-Hunter(); //destruct
         void addLocation(string name); //add vertex
-        void addPath(string name1, string name2, int pathdist) //add edge
+        void addPath(string name1, string name2, int pathdist); //add edge
         void addNPC(string name);
         void displayAvailablePaths(); //show paths from player current vertex
         void movePlayer() //moves player along a chosen path from current vertex
@@ -37,4 +38,4 @@ struct adjLocation{
     location *l;
     int distance;
     };
-#endif // NPC-HUNTER_H
+#endif // NPCHunter_H

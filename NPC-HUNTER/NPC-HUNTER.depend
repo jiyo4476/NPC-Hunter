@@ -1,4 +1,10 @@
 # depslib dependency file v1.0
-1430331999 source:/home/user/NPC-Hunter/NPC-HUNTER/main.cpp
+1430443477 source:/home/user/NPC-Hunter/NPC-HUNTER/main.cpp
+	<iostream>
 	<fstream>
+	"include/NPCHunter.h"
+
+1430514838 /home/user/NPC-Hunter/NPC-HUNTER/include/NPCHunter.h
+	<string>
+	<vector>
 
