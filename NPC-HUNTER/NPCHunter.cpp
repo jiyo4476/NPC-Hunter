@@ -161,8 +161,10 @@ void NPCHunter::movePlayer() //take user input to decide where to go // figure o
 {
     displayAvailablePaths();
     cout<<"Where would you like to go? (please enter location name as displayed)"<<endl;
+    cin.clear();
+    cin.ignore(10000,'\n');
     string choice;
-    cin>>choice;
+    getline(cin,choice);
     location* temp;
     for(int i=0;i<locations.size();i++)
     {
@@ -171,7 +173,8 @@ void NPCHunter::movePlayer() //take user input to decide where to go // figure o
             temp = locations[i];
             break;
         }
-        else temp = NULL;
+        else
+            temp = NULL;
     }
     int pathdist;
     if(temp!=NULL)
@@ -254,25 +257,39 @@ void NPCHunter::displayUserMenu()
 {
    // displayNearbyNPCS();
     cout<<"What would you like to do?"<<endl;
-    cout<<"Options are: 1) to move, 2) to check who's here, 3) to wait,"<<endl<<"4) to quit"<<endl;
+    cout<< "Options are:" << endl << "1) to move" << endl << "2) to check who's here" << endl << "3) to wait," << endl << "4) to quit"<<endl;
     int option;
     cin>>option;
-    if(option==1)
-        {
+    switch(option){
+        case 1: {
             movePlayer();
             moveNPC();
             displayNearbyNPCS();
-            if(targetCheck())running=false;
+            if(targetCheck())
+                running=false;
+            break;
+        }
+        case 2: {
+            displayNearbyNPCS();
+            if(targetCheck())
+                running=false;
+            break;
+        }
+        case 3: {
+            moveNPC();
+            break;
+        }
+        case 4: {
+            running = false;
+            break;
+        }
+        default: {
+            cout << "Invalid Input" << endl;
+            cin.clear();
+            cin.ignore(10000,'\n');
+            break;
         }
 
-   // if(option==2) displayAvailablePaths();
-    if(option==4) running=false;
-    if(option==2)
-    {
-        displayNearbyNPCS();
-        if(targetCheck())running=false;
     }
-    if(option==3) moveNPC();
-     //moveNPC();
 
 }
