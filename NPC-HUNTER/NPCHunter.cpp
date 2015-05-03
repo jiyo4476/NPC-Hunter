@@ -4,6 +4,7 @@
 #include <fstream>
 #include <string>
 #include <stdlib.h>
+#include <time.h>
 using namespace std;
 
 NPCHunter::NPCHunter()
@@ -182,13 +183,15 @@ void NPCHunter::movePlayer() //take user input to decide where to go // figure o
 /*for every City, each NPC moves to a randomly chosen city*/
 void NPCHunter::moveNPC()// only works when cities are all connected.
 {
+    /* initialize random seed: */
+    srand(time(0));
     for(int i=0;i<locations.size();i++){
         for(int j=0;j<locations[i]->atLocation.size();j++){
             if(locations[i]->atLocation[j]->name!="User"){
                 marker* name = locations[i]->atLocation[j];
                 locations[i]->atLocation.erase(locations[i]->atLocation.begin()+(j-1));
-                int rand = rand()% locations.size();
-                locations[rand]->atLocation.push_back(name);
+                int ran = rand()% locations.size();
+                locations[ran]->atLocation.push_back(name);
 
             }
         }
