@@ -8,7 +8,7 @@ using namespace std;
 int main()
 {
     //cout<<"1/n";
-    srand(5);
+    srand(time(NULL));
     static NPCHunter N;
     N.addLocation( "A");
     //cout<<"1/n";
@@ -47,7 +47,7 @@ int main()
     {
         N.displayUserMenu();
     }
-
+    //N.~NPCHunter;
     return 0;
 }
 

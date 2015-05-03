@@ -4,6 +4,7 @@
 //#include <fstream>
 #include <string>
 #include <stdlib.h>
+#include <time.h>
 using namespace std;
 
 NPCHunter::NPCHunter()
@@ -100,7 +101,7 @@ void NPCHunter::displayAvailablePaths()
                     {
                        // cout<<"3";
 
-                        cout<<locations[i]->adj[n]->l->name<<endl; // prints out all of the adjacent locations for the location which the user is at;
+                        cout<<"     "<<locations[i]->adj[n]->l->name<<endl; // prints out all of the adjacent locations for the location which the user is at;
                     }
                 return; //exits after printing to save time;
             }
@@ -122,7 +123,7 @@ void NPCHunter::displayNearbyNPCS()
                 for(int n=0; n<locations[i]->atLocation.size();n++) //steps through vector of markers for the location which the user is at;
                     {
 
-                        cout<<locations[i]->atLocation[n]->name<<endl; // prints out all of the marker names the location which the user is at;
+                        cout<<" >"<<locations[i]->atLocation[n]->name<<endl; // prints out all of the marker names the location which the user is at;
 
                     }
 
@@ -165,8 +166,12 @@ void NPCHunter::movePlayer() //take user input to decide where to go // figure o
     location* temp;
     for(int i=0;i<locations.size();i++)
     {
-        if(locations[i]->name==choice) temp = locations[i];
-
+        if(locations[i]->name==choice)
+        {
+            temp = locations[i];
+            break;
+        }
+        else temp = NULL;
     }
     int pathdist;
     if(temp!=NULL)
@@ -192,10 +197,12 @@ void NPCHunter::movePlayer() //take user input to decide where to go // figure o
 
 
         }
+        else cout<<"That's not a valid location"<<endl;
+
     }
 string NPCHunter::selectTarget()
 {
-    srand(0);
+    srand(time(NULL));
     int randz=rand()%NPCS.size();
     return NPCS[randz]->name;
 }
@@ -203,7 +210,7 @@ string NPCHunter::selectTarget()
 /*for every City, each NPC moves to a randomly chosen city*/
 void NPCHunter::moveNPC()// only works when cities are all connected.
 {
-    srand(1);
+    srand(time(NULL));
     for(int i=0;i<locations.size();i++){
         for(int j=0;j<locations[i]->atLocation.size();j++){
             if(locations[i]->atLocation[j]->name!=playerName){
