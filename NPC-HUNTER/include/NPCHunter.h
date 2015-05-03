@@ -11,7 +11,7 @@ struct marker{ //Struct for NPCs and User
 struct adjLocation;
 struct location{ //my version of a vertex
     string name; //location name
-    vector<adjLocation> adj; //locations to be connected to this location
+    vector<adjLocation*> adj; //locations to be connected to this location
     vector<marker*> atLocation;//NPCs and users at this location
 };
 
@@ -37,8 +37,13 @@ class NPCHunter
         void moveNPC(); // when player move is called NPC wait time goes to zero and they move, gaining a new wait time depending on the length of the path.
       //  void buildMap(string fliename);//constructs map
         bool running;
+        string selectTarget();
+        string target;
+        void addPlayer();
         vector<location*> locations;
-
+        vector<marker*> NPCS;
+        bool targetCheck();
+        string playerName;
     protected:
     private:
 };
